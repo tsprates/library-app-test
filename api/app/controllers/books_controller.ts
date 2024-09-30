@@ -21,7 +21,7 @@ export default class BooksController {
   public async store({ request, response }: HttpContext) {
     const data = request.only(['title', 'author'])
 
-    const author = await Author.findBy('name', data['author'])
+    const author = await Author.findBy('id', data['author'])
     if (!author) {
       return response.status(404).json({ message: 'Author not found' })
     }

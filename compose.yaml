@@ -11,6 +11,18 @@ services:
       - library-net
     depends_on:
       - library_db
+  library_ui:
+    container_name: library_ui
+    build:
+      context: ./ui
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+      - library-net
+    depends_on:
+      - library_api
   library_db:
     container_name: library_db
     image: postgres:16
